@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>學習HTML常用標籤</title>
+</head>
+<body>
+        <!--ctrl+shift+/ 快速生成注釋-->
+        <!--center居中標籤-->
+        <center>
+            <!--
+                form標籤:標單標 千，具備提交用戶輸入的數據的能力
+                單純只有輸入框並不能提交數據，還需要準備一個提交按鈕
+                    <input type="sumit">專門用於表單提交數據的
+                form標籤中常用屬性:
+                    action屬性:用於指定表單提交的位置，當典籍提交按鈕時，會攜帶錄入的數據訪問action指定的URL
+                    method屬性:用於指定表單提交的方式，有兩個可選值:
+                        get:GET方式提交表單數據時，會將表單中錄入的數據拼接到action執行URL的抽象路徑的後面再提交
+                            以"?"作為拼接參數的起點
+                            http://www.baidu.com?
+                        post:
+                注意:只有包含在form標籤中的輸入框中用戶輸入數據才會被提交
+                    並且只有輸入框都必須使用name屬性定義輸入的值的名字，才可以被提交
+                    提交參數時，會將參數值和參數名以"參數名=參數值"的形式進行提交
+                    http://www.baidu.com?username=laoan
+                    並且如果表單中涉及多個需要提交的數據，納多組數據之間要用"&"鏈接
+                    http://www.baidu.com?username=laoan&age=18
+            -->
+            <form action="https://www.twitch.tv" method="get">
+                姓名: <input type="text" name="username">
+                年齡: <input type="text" name="age">
+                <input type="submit">
+            </form>
+            <!--img標籤 圖片標籤
+                src寫圖片的路徑
+                alt是圖片的備註名稱
+                width:設置圖片的寬度
+                      50%站當前網頁的寬度的百分比
+                      100px固定了圖片
+                在網頁中插入圖片時，通常會使用相對路徑，但是html中的相對路徑有兩種
+                1)直接使用"./"
+                  此處的"./"表示的是當前請求該頁面的URL中該頁面所在的目錄
+                  例如:
+                  請求我們當前項目的首頁index.html
+                  需要在瀏覽器上輸入URL:http://localhost:8088/myweb/index.html
+                  ,而index.html中插入的圖片的代碼是:
+                  <img src="./img.jepg" width="30%">
+                  此處使用的"./"會貝瀏覽器解析時，認為的實際路徑是:
+                  http://localhost:8088/myweb/，
+                  所以圖片代碼其實被瀏覽器解析成如下內容:
+                  <img src="http://localhost:8088/myweb/lulu.png" width="30%">
+                  我們平常不建議使用這種路徑，因為容易丟失圖片路徑，
+                  例如:
+                  請求我們當前項目的首頁index.html，但是輸入錯誤的URL
+                  需要在瀏覽器上輸入URL:http://localhost:8088/myweb/index111.html
+                  ,由於該URL不存在指定資源，所以會將404.html返回給瀏覽器，
+                  而404.html中插入的圖片代碼是:
+                  <img src="./404.gif" width="30%">
+                  此處使用的"./"會被瀏覽器解析時，認為的實際路徑是:
+                  http://localhost:8088/myweb/,
+                  所以圖片代碼其實被瀏覽器解析成如下內容:
+                  <img src="http://localhost:8088/myweb/404.gif" width="30%">
+                  而http://localhost:8088/myweb/404.gif這個URL是不能訪問到404.gif圖片的
+                  2)使用"/"
+                  "./"是URL中抽象路徑中最後一個"/"位置
+                  "/"是URL中抽象路徑中第一個:"/"位置
+                  舉例:
+                  http://localhost:8088/myweb/index.html
+                                       |----抽象路徑----|
+                  "./"指的是:http://localhost:8088/myweb/
+                  "/"指的是:http://localhost:8088/
+                  所以在index.html中，圖片的代碼:
+                  <img src="./img.jepg" width="30%">
+                  瀏覽器在解析時:將"/"替換，
+                  <img src="http://localhost:8088/myweb/lulu.png" width="30%">
+                  在404.html中，圖片代碼是:
+                  <img src="/root/404.gif" width="30%">
+                  瀏覽器在解析時:將"/"替換，
+                  <img src="http://localhost:8088/root/404.gif" width="30%">
+                -->
+            <img src="./lulu.png" alt="程序員" width="30%">
+            <br>
+            <!--input標籤
+                可以根據type屬性的職，變化不同的文本框
+                type="text"  普通文本框
+                type="password" 密碼框
+                type="radio" 單選框
+            -->
+            姓名:<input type="text">
+            <br><!--換行標籤-->
+            密碼:<input type="password">
+            <br>
+            性別:<input type="radio">男<input type="radio">女
+            <br>
+            愛好:<input type="checkbox">money<input type="checkbox">豪車<input type="checkbox">富婆
+            <!--value給按鈕中添加信息-->
+            <!--onclick點擊監聽事件 可以監聽點擊按鈕的動作，一旦監聽到，即可執行對應的內容-->
+            <!--alert在網頁上標提示框-->
+            <input type="button" value="百度一下" onclick="alert('點妳妹!!')">
+            <br>
+            <!--超鏈接標籤href屬性極為點擊超鏈接後，跳轉的位置-->
+            <!--target="_blang"訪問鏈接的網址後，新開一個頁面-->
+            <a href="http://www.taobao.com" target="_blank">淘寶</a>
+            <br>
+            <!--表格標籤
+                    table標籤:劃分表格所在的位置
+                    tr標籤:table rows 表格的行標籤
+                    td標籤:table data表格的數據 就是一行中有幾列
+                    colspan屬性:跨列和並列，從左到右合併
+                    rowspan屬性:跨行和並列，
+            -->
+            <table border="1" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="center">11</td>
+                    <!--<td>12</td>-->
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>15</td>
+                    <td rowspan="2">16</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>18</td>
+                    <!--<td>19</td>-->
+                </tr>
+            </table>
+            <!--標題標籤 h標籤-->
+            <h1>一級標籤</h1>
+            <h2>二級標籤</h2>
+            <h3>三級標籤</h3>
+            <h4>四級標籤</h4>
+            <h5>五級標籤</h5>
+            <h6>六級標籤</h6>
+        </center>
+</body>
+</html>
